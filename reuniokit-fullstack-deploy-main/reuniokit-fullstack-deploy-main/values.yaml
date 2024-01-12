@@ -1,0 +1,72 @@
+imagePullSecrets:
+  - name: registries
+
+objets:
+  - name: api
+    enabled: true
+    pod:
+      name: reuniokitfs-api
+      image:
+        repository: harbor.lab.incubateur.finances.rie.gouv.fr/sg-dsci/reuniokitapi
+        tag: 0b0870c1
+      port: 5070
+      securityContext: {}
+    service:
+      name: reuniokitfs-svc-api
+      type: ClusterIP
+      port: 7070
+      targetPort: http
+  - name: frontend
+    enabled: true
+    pod:
+      name: reuniokitfs-frontend
+      image:
+        repository: harbor.lab.incubateur.finances.rie.gouv.fr/sg-dsci/reuniokitfrontend
+        tag: 4d7ed6a3
+      port: 5050
+      securityContext: {}
+    service:
+      name: reuniokitfs-svc-frontend
+      type: ClusterIP
+      port: 7050
+      targetPort: http
+
+
+ingress:
+  enabled: true
+  className: "nginx"
+  annotations: #{}
+    nginx.ingress.kubernetes.io/use-regex: "true"
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+  hosts:
+    - host: reuniokitfs.lab.incubateur.finances.rie.gouv.fr
+      paths:
+        - path: /api(/|$)(.*)
+          pathType: Prefix
+          backend:
+            service:
+            # name fait référence au nom du service définit dans le name du metadata de service-x.yaml / doit être identique au nom défini pour le service
+              name: reuniokitfs-svc-api
+              port:
+                number: 7070
+        - path: /app(/|$)(.*)
+          pathType: Prefix
+          backend:
+           service:
+              name: reuniokitfs-svc-frontend
+              port:
+                number: 7050
+
+resources: 
+  limits:
+    cpu: 500m
+    memory: 256Mi
+  requests:
+    cpu: 100m
+    memory: 128Mi
+
+serviceAccount:
+  create: false
+
+nodeSelector:
+  nubonyxia.users: "true"

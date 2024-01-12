@@ -1,0 +1,67 @@
+apiVersion: v1
+kind: List
+items:
+{{- range .Values.objets }}
+- apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    name: {{ include "chart.fullname" $ }}-{{ .name }}
+    labels:
+      {{- include "chart.labels" $ | nindent 6 }}
+  spec:
+    {{- if not $.Values.autoscaling.enabled }}
+    replicas: {{ $.Values.replicaCount }}
+    {{- end }}
+    selector:
+      matchLabels:
+        {{- include "chart.selectorLabels" $ | nindent 8 }}
+    template:
+      metadata:
+        {{- with $.Values.podAnnotations }}
+        annotations:
+          {{- toYaml $ | nindent 10 }}
+        {{- end }}
+        labels:
+          {{- include "chart.selectorLabels" $ | nindent 10 }}
+          app.kubernetes.io/component: {{ .pod.name }}
+      spec:
+        {{- with $.Values.imagePullSecrets }}
+        imagePullSecrets:
+          {{- toYaml . | nindent 10 }}
+        {{- end }}
+        serviceAccountName: {{ include "chart.serviceAccountName" $ }}
+        securityContext:
+          {{- toYaml $.Values.podSecurityContext | nindent 10 }}
+        containers:
+          - name: {{ .pod.name }}
+            securityContext:
+              {{- toYaml .pod.securityContext | nindent 14 }}
+            image: "{{ .pod.image.repository }}:{{ .pod.image.tag | default $.Chart.AppVersion }}"
+            imagePullPolicy: {{ $.Values.image.pullPolicy }}
+            ports:
+              - name: http
+                containerPort: {{ .pod.port }}
+                protocol: TCP
+            livenessProbe:
+              httpGet:
+                path: /
+                port: http
+            readinessProbe:
+              httpGet:
+                path: /
+                port: http
+            resources:
+              {{- toYaml $.Values.resources | nindent 14 }}
+        {{- with $.Values.nodeSelector }}
+        nodeSelector:
+          {{- toYaml . | nindent 10 }}
+        {{- end }}
+        {{- with $.Values.affinity }}
+        affinity:
+          {{- toYaml $ | nindent 10 }}
+        {{- end }}
+        {{- with $.Values.tolerations }}
+        tolerations:
+          {{- toYaml $ | nindent 10 }}
+        {{- end }}
+{{- end }}

@@ -1,0 +1,55 @@
+h1 ,h3 {
+    font-family: 'Marianne';
+    color: #4D1C6B; 
+    text-align: center;
+    
+}
+
+h3 {
+    font-family: 'Marianne';
+    color: #4D1C6B; 
+}
+
+
+
+.login-page {
+    
+    margin: 20px;
+    padding: 20px;
+    background-color: #f0f0f0;
+}
+
+form {
+   
+    margin-top: 20px;
+}
+
+label {
+    
+font-family: Marianne;
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+gap: 10px;
+}
+
+.log {
+    
+width: 560px;
+height: 54px; 
+fill: #F7F6F8;
+opacity: 0.5;
+}
+
+
+.mdp {
+
+color: #38144D;
+text-align: right;
+font-family: Nunito;
+font-size: 12px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+
+}

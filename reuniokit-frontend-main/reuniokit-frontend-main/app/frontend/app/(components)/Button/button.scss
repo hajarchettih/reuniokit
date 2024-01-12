@@ -1,0 +1,48 @@
+.button-primary button,
+.button-secondary button,
+.button-tertiary button {
+  text-align: center;
+  border: none;
+  width: 640.907px;
+  height: 52.198px;
+  display: flex;
+  align-items: center; 
+  justify-content: center; 
+  margin: 20px auto;
+  padding: 30px;
+  border-radius: 10px;
+  position: relative;
+  color: #FFF;
+  font-family: Marianne;
+  font-size: 20.47px;
+  font-style: normal;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+
+.button-primary button {
+  background-color: #4D1C6B;;
+}
+
+.button-secondary button {
+  background-color: #4D1C6B;;
+}
+
+.button-tertiary button {
+  background-color: #4D1C6B;
+}
+
+
+.button-primary .button-secondary button {
+  background-color: #FF5733;
+}
+
+
+.button-primary button span,
+.button-secondary button span,
+.button-tertiary button span {
+  display: block; 
+  margin-top: 5px; 
+}
+

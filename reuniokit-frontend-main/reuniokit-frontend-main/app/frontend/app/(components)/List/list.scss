@@ -1,0 +1,139 @@
+@font-face {
+  font-family: 'Chewy';
+  src: url('../../../public/app/Font/Chewy-Regular.ttf') format('ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.List {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  font-family: 'Marianne';
+
+  &:hover {
+    border-radius: 10px;
+    background: #ffffff;
+    border-bottom: 4px solid #4D1C6B;
+
+    .border-box {
+      background-color: #4D1C6B;
+    }
+
+    .button button:hover {
+      background-color: #4D1C6B;
+      color: #F5F5FE;
+    }
+
+    .minute {
+      color: #F5F5FE;
+    }
+  }
+}
+
+.title {
+  display: flex;
+  align-items: center;
+
+  .icon {
+    margin-right: 10px;
+
+    .icon-number {
+      background-color: #F1EEF3;
+      border: 2px solid #F1EEF3;
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+}
+
+.objectif {
+margin-top: 30px;
+color: #4D1C6B;
+font-family: 'Chewy', sans-serif;
+font-size: 16px;
+font-style: normal;
+font-weight: 400;
+line-height: 28px; 
+text-transform: uppercase;
+
+}
+
+.obj {
+  display: inline-block;
+  margin-left: 10px;
+  color: #fff;
+  border-left: 2px solid #4D1C6B;
+}
+
+
+
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  button {
+    padding: 5px 10px;
+    background-color: #F1EEF3;
+    border: none;
+    cursor: pointer;
+    border-radius: 50%;
+    color: #4D1C6B;
+
+    &:hover {
+      background-color: #4D1C6B;
+      color: #F5F5FE;
+    }
+  }
+}
+
+.border-box {
+  width: 114px;
+  height: 48px;
+  margin: 20px;
+  padding-top: 10px;
+  padding-left: 30px;
+  border-radius: 10px;
+  background-color: #F1EEF3;
+
+  .minute {
+    font-family: 'Marianne';
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    color: #4D1C6B;
+
+    &:hover {
+      color: #F5F5FE;
+    }
+  }
+
+  .title .icon .icon-number {
+    background-color: #4D1C6B;
+  }
+
+  .button button {
+    background-color: #4D1C6B;
+  }
+
+  .minute {
+    color: #4D1C6B;
+    font-family: 'Marianne';
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+
+    &:hover {
+      color: #F5F5FE;
+    }
+  }
+}

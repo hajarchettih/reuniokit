@@ -1,0 +1,35 @@
+image:
+  repository: harbor.lab.incubateur.finances.rie.gouv.fr/sg-dsci/reuniokitfrontend
+
+imagePullSecrets:
+  - name: registries
+
+application:
+  port: 5050
+
+ingress:
+  enabled: true
+  className: "nginx"
+  annotations: #{}
+    nginx.ingress.kubernetes.io/use-regex: "true"
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+
+  hosts:
+    - host: reuniokitfrontend.lab.incubateur.finances.rie.gouv.fr
+      paths:
+        - path: /app(/|$)(.*)
+          pathType: Prefix
+
+resources: 
+  limits:
+    cpu: 500m
+    memory: 256Mi
+  requests:
+    cpu: 100m
+    memory: 128Mi
+
+serviceAccount:
+  create: false
+
+nodeSelector:
+  nubonyxia.users: "true"

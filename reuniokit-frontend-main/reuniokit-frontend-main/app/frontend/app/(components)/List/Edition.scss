@@ -1,0 +1,23 @@
+
+.pageContainer {
+    background-color: #F1EEF3;
+    display: flex;
+  }
+  
+  .cardContainer {
+    width: 926px;
+    height: 1389px;
+    background-color: #FFFFFF;
+    padding: 20px;
+  }
+  
+  .actionsContainer {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .sidePanel {
+    width: 233px;
+    height: 968px;
+    background-color: #00FF00;
+  }

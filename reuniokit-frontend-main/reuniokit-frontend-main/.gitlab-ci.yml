@@ -1,0 +1,50 @@
+include:
+  - project: 'bercyhub/nubonyxia/nubonyxia-templates'
+    file: '/gitlab/python_app.gitlab-ci.yml'
+#
+##====================================================================
+## Il est possible de
+## surcharger les valeurs par défaut des variables d'environnements
+## de la CI/CD
+##--------------------------------------------------------------------
+## /!\ Ne pas définir dans ce fichier des variables portant des 
+##     données sensibles telles que des mots de passe, ...
+##  => pour cela, ajouter ces variables dans les Paramètres CI/CD de
+##     de votre projet GitLab
+##--------------------------------------------------------------------
+variables:
+  # Permet de changer le nom du fichier Dockerfile par défaut
+  DOCKER_FILE: "Dockerfile"
+  # ---------------
+  # Nom du projet Harbor dans lequel sera poussée l'image de container
+  REGISTRY_PROJECT: "sg-dsci"
+  # ---------------
+  # Proxy HTTPS à utiliser dans les différents jobs et/ou la construction 
+  # d'images de containers
+  HTTPS_PROXY: "172.16.0.53:3128"
+  #
+  # ---------------
+  # Eléments de configuration Onyxia
+  # NUBONYXIA_ID: Identifiant du compte utilisateur sur la plateforme NubOnyxia
+  # NUBONYXIA_REGISTRY_SECRET: 
+  #         Nom du secret du compte correspondant à NUBONYXIA_ID devant contenir
+  #         les clés USERNAME et PASSWORD d'accès à Harbor
+  NUBONYXIA_ID: ytihianine
+  NUBONYXIA_REGISTRY_SECRET: registries
+  # ---------------
+  #
+  # Utilisation de Helm pour le push de chart et le déploiement de l'application
+  USE_HELM: "true" # par défaut
+  #
+  # S'il existe un répertoire 'chart' dans le projet, devrait correspondre au
+  # nom du chart présent dans le fichier 'chart.Chart.yaml'
+  CHART_NAME: reuniokitfrontend
+  # ---------------
+  #
+  # Utilisation de kubectl pour le déploiement de l'application
+  USE_KUBECTL: "false" # par défaut
+  # ---------------
+  #
+  # Permet de définir le nom de l'application qui, par défaut, correspond au 
+  # nom du projet
+  APPLICATION_NAME: "reuniokitfrontend"
